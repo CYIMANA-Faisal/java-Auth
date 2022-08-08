@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/cyimana/Documents/NetBeansProjects/java-Auth/src/java/model/Admin.java</file>
+            <file>file:/C:/Users/cyimana/Documents/NetBeansProjects/java-Auth/src/java/model/User.java</file>
+            <file>file:/C:/Users/cyimana/Documents/NetBeansProjects/java-Auth/src/java/model/Pharmacist.java</file>
+            <file>file:/C:/Users/cyimana/Documents/NetBeansProjects/java-Auth/src/java/model/Role.java</file>
+            <file>file:/C:/Users/cyimana/Documents/NetBeansProjects/java-Auth/src/java/model/Patient.java</file>
+            <file>file:/C:/Users/cyimana/Documents/NetBeansProjects/java-Auth/src/java/repository/UserRepository.java</file>
+            <file>file:/C:/Users/cyimana/Documents/NetBeansProjects/java-Auth/src/java/dto/UserSignupDto.java</file>
+            <file>file:/C:/Users/cyimana/Documents/NetBeansProjects/java-Auth/src/java/controller/AuthResource.java</file>
+            <file>file:/C:/Users/cyimana/Documents/NetBeansProjects/java-Auth/src/java/model/Physician.java</file>
+            <file>file:/C:/Users/cyimana/Documents/NetBeansProjects/java-Auth/src/java/controller/ApplicationConfig.java</file>
+            <file>file:/C:/Users/cyimana/Documents/NetBeansProjects/java-Auth/src/java/dto/UserLogin.java</file>
+        </group>
+    </open-files>
+</project-private>
