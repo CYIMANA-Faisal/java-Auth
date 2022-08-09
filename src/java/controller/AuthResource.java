@@ -105,23 +105,27 @@ public class AuthResource {
         }
         response.setStatus(201);
         response.setMessage("success");
-        String token = generateToken(userLogin.email, existingUser.getRole());
+        String token = generateToken(userLogin.email, existingUser.getRole(), existingUser.getFirstName(), existingUser.getLastName());
         response.setBody(token);        
         response.setUser(existingUser);
         return Response.status(Response.Status.CREATED).entity(response).build();
 
     }
 
-    private String generateToken(String email, Role role) {
+    private String generateToken(String email, Role role, String firstName, String lastName) {
 
         try {
             Claims claims = Jwts.claims().setSubject(email);
                 claims.put("role", role);
                 claims.put("email", email);
+                claims.put("firstName", firstName);
+                claims.put("lastName", lastName);
                 Instant now = Instant.now();
                 String jwtToken = Jwts.builder()
                 .claim("role", role)
                 .claim("email", email)
+                .claim("firstName", firstName)
+                .claim("lastName", lastName)
                 .setSubject(email)
                 .setId(email)
                 .setIssuedAt(Date.from(now))
