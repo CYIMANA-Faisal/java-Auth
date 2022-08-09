@@ -6,13 +6,14 @@
 package controller;
 
 import java.util.Set;
+import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 /**
  *
  * @author cyimana
  */
-@javax.ws.rs.ApplicationPath("api")
+@ApplicationPath("api")
 public class ApplicationConfig extends Application {
 
     @Override
@@ -29,7 +30,9 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(controller.AuthResource.class);
+        resources.add(controller.AuthResource.class);        
+        resources.add(controller.CorsFilter.class);
+
     }
     
 }

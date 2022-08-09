@@ -19,8 +19,8 @@ public class Patient extends User{
     public Patient() {
     }
     
-    public Patient(String email, String password, String firstName, String lastName, Integer age, Gender gender) {
-        super(email, password, firstName, lastName, age, gender, Role.PATIENT);
+    public Patient(String email, String password, String firstName, String lastName, String phoneNumber, Integer age, Gender gender) {
+        super(email, password, firstName, lastName, phoneNumber, age, gender, Role.PATIENT);
     }
 
     

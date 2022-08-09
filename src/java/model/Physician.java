@@ -15,8 +15,8 @@ public class Physician extends User {
     public Physician() {
     }
     
-    public Physician(String email, String password, String firstName, String lastName, Integer age, Gender gender) {
-        super(email, password, firstName, lastName, age, gender, Role.PHYSICIAN);
+    public Physician(String email, String password, String firstName, String lastName, String phoneNumber, Integer age, Gender gender) {
+        super(email, password, firstName, lastName, phoneNumber, age, gender, Role.PHYSICIAN);
     }
 
     

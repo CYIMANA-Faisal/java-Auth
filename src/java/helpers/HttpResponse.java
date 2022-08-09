@@ -9,10 +9,19 @@ package helpers;
  *
  * @author cyimana
  */
-public class HttpResponse {
+public class HttpResponse<T> {
     private Integer status;
     private String message;
-    private String body;
+    String body;
+    T user;
+
+    public T getUser() {
+        return user;
+    }
+
+    public void setUser(T user) {
+        this.user = user;
+    }
 
     @Override
     public String toString() {

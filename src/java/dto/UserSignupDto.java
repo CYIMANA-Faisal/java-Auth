@@ -15,6 +15,7 @@ import model.Role;
 public class UserSignupDto {
     public String firstName;
     public String lastName;
+    public String phoneNumber;
     public String email;
     public String password;
     public Integer age;

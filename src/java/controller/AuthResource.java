@@ -14,6 +14,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.TextCodec;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -57,28 +58,29 @@ public class AuthResource {
         switch (user.role) {
             case PATIENT: {
                 if(!validatePassword(user.password, 7)) return Response.status(Response.Status.BAD_REQUEST).entity("Weak password").build();
-                Patient patient = new Patient(user.email, hashPassword(user.password), user.firstName, user.lastName, user.age, user.gender);
+                Patient patient = new Patient(user.email, hashPassword(user.password), user.firstName, user.lastName, user.phoneNumber, user.age, user.gender);
                 if(isUserExisting(user.email)) return Response.status(Response.Status.CONFLICT).entity("Email already exist").build();
                 patient.createUser(patient);
-                return Response.status(Response.Status.CREATED).entity("User registered successfully please login.").build();
+                return 
+                        Response.status(Response.Status.CREATED).entity("User registered successfully please login.").build();
             }
             case PHARMACIST: {
                 if(!validatePassword(user.password, 5)) return Response.status(Response.Status.BAD_REQUEST).entity("Weak password").build();
-                Pharmacist pharmacist = new Pharmacist(user.email, hashPassword(user.password), user.firstName, user.lastName, user.age, user.gender);
+                Pharmacist pharmacist = new Pharmacist(user.email, hashPassword(user.password), user.firstName, user.lastName, user.phoneNumber, user.age, user.gender);
                 if(isUserExisting(user.email)) return Response.status(Response.Status.CONFLICT).entity("Email already exist").build();
                 pharmacist.createUser(pharmacist);
                 return Response.status(Response.Status.CREATED).entity("User registered successfully please login.").build();
             }
             case PHYSICIAN: {
                 if(!validatePassword(user.password, 6)) return Response.status(Response.Status.BAD_REQUEST).entity("Weak password").build();
-                Physician physician = new Physician(user.email, hashPassword(user.password), user.firstName, user.lastName, user.age, user.gender);
+                Physician physician = new Physician(user.email, hashPassword(user.password), user.firstName, user.lastName, user.phoneNumber, user.age, user.gender);
                 if(isUserExisting(user.email)) return Response.status(Response.Status.CONFLICT).entity("Email already exist").build();
                 physician.createUser(physician);
                 return Response.status(Response.Status.CREATED).entity("User registered successfully please login.").build();
             }
             case ADMIN: {
                 if(!validatePassword(user.password, 8)) return Response.status(Response.Status.BAD_REQUEST).entity("Weak password").build();
-                Admin admin = new Admin(user.email, hashPassword(user.password), user.firstName, user.lastName, user.age, user.gender);
+                Admin admin = new Admin(user.email, hashPassword(user.password), user.firstName, user.lastName, user.phoneNumber, user.age, user.gender);
                 if(isUserExisting(user.email)) return Response.status(Response.Status.CONFLICT).entity("Email already exist").build();
                 admin.createUser(admin);
                 return Response.status(Response.Status.CREATED).entity("User registered successfully please login.").build();
@@ -104,7 +106,8 @@ public class AuthResource {
         response.setStatus(201);
         response.setMessage("success");
         String token = generateToken(userLogin.email, existingUser.getRole());
-        response.setBody(token);
+        response.setBody(token);        
+        response.setUser(existingUser);
         return Response.status(Response.Status.CREATED).entity(response).build();
 
     }
@@ -112,21 +115,20 @@ public class AuthResource {
     private String generateToken(String email, Role role) {
 
         try {
-            String token = Jwts.builder()
-                    .setId(email)
-                    .setIssuer("faisal")
-                    .setSubject("auth")
-                    .claim("role", role)
-                    .claim("username", email)
-                    .setIssuedAt(Date.from(Instant.ofEpochSecond(1466796822L)))
-                    .setExpiration(Date.from(Instant.ofEpochSecond(4622470422L)))
-                    .signWith(
-                            SignatureAlgorithm.HS256.HS256,
-                            TextCodec.BASE64.decode("Yn2kjibddFAWtnPJ2AFlL8WXmohJMCvigQggaEypa5E=")
-                    )
-                    .compact();
+            Claims claims = Jwts.claims().setSubject(email);
+                claims.put("role", role);
+                claims.put("email", email);
+                Instant now = Instant.now();
+                String jwtToken = Jwts.builder()
+                .claim("role", role)
+                .claim("email", email)
+                .setSubject(email)
+                .setId(email)
+                .setIssuedAt(Date.from(now))
+                .setExpiration(Date.from(now.plus(5l, ChronoUnit.HOURS)))
+                .compact();
 
-            return token;
+            return jwtToken;
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
@@ -135,7 +137,7 @@ public class AuthResource {
     }
     
     private boolean validatePassword(String password,int min){
-        return password.length() == min;
+        return password.length() >= min;
     }
     
     private String hashPassword(String password ){
@@ -145,5 +147,6 @@ public class AuthResource {
         User isExisting = UserRepository.getUserByEmail(email);
         if(isExisting != null) return true;
         return false;
+        
     }
 }
