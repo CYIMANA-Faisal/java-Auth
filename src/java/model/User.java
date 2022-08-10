@@ -31,7 +31,7 @@ public abstract class User {
         this.setRole(role);
     }
     
-    public abstract User createUser(User user);
+    public abstract User create();
     
     public String getEmail() {
         return email;

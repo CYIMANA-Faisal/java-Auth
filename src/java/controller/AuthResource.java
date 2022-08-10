@@ -16,6 +16,9 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import javax.validation.Valid;
+import javax.ws.rs.BadRequestException;
+import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -27,6 +30,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.ws.http.HTTPException;
 import model.Admin;
 import model.Patient;
 import model.Pharmacist;
@@ -54,40 +58,48 @@ public class AuthResource {
     @Path("signup")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response registerUser(UserSignupDto user) {
-        switch (user.role) {
+    public Response registerUser(@Valid UserSignupDto user) {
+        try{
+           User newUser = null;
+           if(user.role == null) throw new BadRequestException("Unrecognized role");
+           switch (user.role) {
             case PATIENT: {
                 if(!validatePassword(user.password, 7)) return Response.status(Response.Status.BAD_REQUEST).entity("Weak password").build();
-                Patient patient = new Patient(user.email, hashPassword(user.password), user.firstName, user.lastName, user.phoneNumber, user.age, user.gender);
+                newUser = new Patient(user.email, hashPassword(user.password), user.firstName, user.lastName, user.phoneNumber, user.age, user.gender);
                 if(isUserExisting(user.email)) return Response.status(Response.Status.CONFLICT).entity("Email already exist").build();
-                patient.createUser(patient);
-                return 
-                        Response.status(Response.Status.CREATED).entity("User registered successfully please login.").build();
+                newUser.create();
+                break;
             }
             case PHARMACIST: {
                 if(!validatePassword(user.password, 5)) return Response.status(Response.Status.BAD_REQUEST).entity("Weak password").build();
-                Pharmacist pharmacist = new Pharmacist(user.email, hashPassword(user.password), user.firstName, user.lastName, user.phoneNumber, user.age, user.gender);
+                newUser = new Pharmacist(user.email, hashPassword(user.password), user.firstName, user.lastName, user.phoneNumber, user.age, user.gender);
                 if(isUserExisting(user.email)) return Response.status(Response.Status.CONFLICT).entity("Email already exist").build();
-                pharmacist.createUser(pharmacist);
-                return Response.status(Response.Status.CREATED).entity("User registered successfully please login.").build();
+                newUser.create();
+                break;
             }
             case PHYSICIAN: {
                 if(!validatePassword(user.password, 6)) return Response.status(Response.Status.BAD_REQUEST).entity("Weak password").build();
-                Physician physician = new Physician(user.email, hashPassword(user.password), user.firstName, user.lastName, user.phoneNumber, user.age, user.gender);
+                newUser = new Physician(user.email, hashPassword(user.password), user.firstName, user.lastName, user.phoneNumber, user.age, user.gender);
                 if(isUserExisting(user.email)) return Response.status(Response.Status.CONFLICT).entity("Email already exist").build();
-                physician.createUser(physician);
-                return Response.status(Response.Status.CREATED).entity("User registered successfully please login.").build();
+                newUser.create();
+                break;
             }
             case ADMIN: {
                 if(!validatePassword(user.password, 8)) return Response.status(Response.Status.BAD_REQUEST).entity("Weak password").build();
-                Admin admin = new Admin(user.email, hashPassword(user.password), user.firstName, user.lastName, user.phoneNumber, user.age, user.gender);
+                
+                newUser = new Admin(user.email, hashPassword(user.password), user.firstName, user.lastName, user.phoneNumber, user.age, user.gender);
                 if(isUserExisting(user.email)) return Response.status(Response.Status.CONFLICT).entity("Email already exist").build();
-                admin.createUser(admin);
-                return Response.status(Response.Status.CREATED).entity("User registered successfully please login.").build();
+                newUser.create();
+                break;
             }
             default: {
-                return Response.status(Response.Status.BAD_REQUEST).entity("Invalid Role").build();
+                throw new BadRequestException("Unrecognized role");
             }
+        }
+          return Response.status(Response.Status.CREATED).entity("User registered successfully please login.").build(); 
+        }
+        catch (ClientErrorException e){
+            return Response.status(e.getResponse().getStatus()).entity(e.getMessage()).build();
         }
     }
     
@@ -100,7 +112,7 @@ public class AuthResource {
         User existingUser = UserRepository.getUserByEmail(userLogin.email);
         if (existingUser == null || !BCrypt.checkpw(userLogin.password, existingUser.getPassword())) {
             response.setStatus(401);
-            response.setMessage("invalid credentials");
+            response.setMessage("Invalid credentials");
             return Response.status(Response.Status.UNAUTHORIZED).entity(response).type(MediaType.APPLICATION_JSON).build();
         }
         response.setStatus(201);

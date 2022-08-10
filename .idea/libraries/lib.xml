@@ -1,0 +1,60 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/asm-all-repackaged-2.2.0-b21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/javax.mail_1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jaxws-rt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jaxws-tools.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jackson-databind-2.13.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/javax.inject-2.2.0-b21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/mimepull.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/hk2-locator-2.2.0-b21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/saaj-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/cglib-2.2.0-b21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/policy.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/saaj-impl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jackson-annotations-2.13.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/stax-ex.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/validation-api-1.1.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/gmbal-api-only.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/osgi-resource-locator-1.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/woodstox-core-asl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/hk2-api-2.2.0-b21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/bcrypt-0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/FastInfoset.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/guava-14.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jjwt-api-0.11.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/stax2-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/hk2-utils-2.2.0-b21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/javax.servlet-api-3.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/javax.annotation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jaxb-xjc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jaxws-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/org.osgi.core-4.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jaxb-impl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jersey-entity-filtering-2.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/ha-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jaxb-api-2.2.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jersey-media-moxy-2.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/activation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jersey-container-servlet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/persistence-api-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/management-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jersey-server.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jjwt-0.9.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/javax.ws.rs-api-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jsr181-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jersey-container-servlet-core.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/eclipselink.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jersey-common.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jsr173_1.0_api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jackson-core-2.13.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jaxb-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/jersey-client.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/javax.annotation-api-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/web/WEB-INF/lib/streambuffer.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

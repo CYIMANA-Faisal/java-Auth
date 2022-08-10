@@ -22,8 +22,8 @@ public class Pharmacist extends User {
     
 
     @Override
-    public User createUser(User user) {
-        UserRepository.registerUser(user);
-        return user;
+    public User create() {
+        UserRepository.registerUser(this);
+        return this;
     }
 }

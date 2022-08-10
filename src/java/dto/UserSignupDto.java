@@ -5,6 +5,10 @@
  */
 package dto;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 import model.Gender;
 import model.Role;
 
@@ -12,7 +16,13 @@ import model.Role;
  *
  * @author cyimana
  */
+@XmlRootElement
 public class UserSignupDto {
+
+    @Override
+    public String toString() {
+        return "UserSignupDto{" + "firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", age=" + age + ", gender=" + gender + ", role=" + role + '}';
+    }
     public String firstName;
     public String lastName;
     public String phoneNumber;
@@ -20,5 +30,7 @@ public class UserSignupDto {
     public String password;
     public Integer age;
     public Gender gender;
+    @NotNull
+    @Enumerated(EnumType.STRING)
     public Role role;
 }
